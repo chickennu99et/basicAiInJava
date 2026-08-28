@@ -9,7 +9,7 @@ public class Network {
     private final int[] layersAndTheirNeuronCount;
     private final int valuesIn;
     
-    public Network(int[] layersNNeurons, int valuesInn, double learnRate, double regRate)
+    public Network(int[] layersNNeurons, int valuesInn, double learnRate, double regRate, boolean notOldLoad)
     {
         valuesIn = valuesInn;
         layerCount = layersNNeurons.length;
@@ -17,25 +17,25 @@ public class Network {
         regRate = regRate;
         layers = new Layer[layerCount];
         layersAndTheirNeuronCount = layersNNeurons.clone();
-        layers[0] = new Layer(layersNNeurons[0], valuesIn, learnRate, regRate);
+        layers[0] = new Layer(layersNNeurons[0], valuesIn, learnRate, regRate, notOldLoad);
         for(int i = 1; i<layerCount; i++)
         {
-            layers[i] = new Layer(layersNNeurons[i], layersNNeurons[i-1], learnRate, regRate);
+            layers[i] = new Layer(layersNNeurons[i], layersNNeurons[i-1], learnRate, regRate, notOldLoad);
         }
     }
-    public Network(int layer, int ValuesInn, int neuronsPerLayer, int NeuronsOut, double learnRate, double regRate)
+    public Network(int layer, int ValuesInn, int neuronsPerLayer, int NeuronsOut, double learnRate, double regRate, boolean notOldLoad)
     {
         valuesIn = ValuesInn;
         layerCount = layer;
         learnRate = learnRate;
         regRate = regRate;
         layers = new Layer[layerCount];
-        layers[0] = new Layer(neuronsPerLayer, valuesIn, learnRate, regRate);
+        layers[0] = new Layer(neuronsPerLayer, valuesIn, learnRate, regRate, notOldLoad);
         for(int i = 1; i<layerCount-1; i++)
         {
-            layers[i]=new Layer(neuronsPerLayer, neuronsPerLayer, learnRate, regRate);
+            layers[i]=new Layer(neuronsPerLayer, neuronsPerLayer, learnRate, regRate, notOldLoad);
         }
-        layers[layerCount-1] = new Layer(NeuronsOut, neuronsPerLayer, learnRate, regRate);
+        layers[layerCount-1] = new Layer(NeuronsOut, neuronsPerLayer, learnRate, regRate, notOldLoad);
         layersAndTheirNeuronCount = new int[layer];
         for(int i = 0; i<layerCount; i++)
         {
