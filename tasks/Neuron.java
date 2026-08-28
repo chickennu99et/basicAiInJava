@@ -9,7 +9,7 @@ public class Neuron
     private double learnRate;
     private double regRate;
     
-    public Neuron(int connectionCount, double learnRate, double regRate) 
+    public Neuron(int connectionCount, double learnRate, double regRate, boolean notOldLoad) 
     {
         learnRate = learnRate;
         regRate = regRate;
@@ -17,10 +17,19 @@ public class Neuron
         weightsB = new double[connectionCount];
         biasA = Math.random()*2-1;
         biasB = Math.random()*2-1;
-        for(int i = 0; i<connectionCount; i++)
+        if(notOldLoad){
+            for(int i = 0; i<connectionCount; i++)
+            {
+                weightsA[i] = Math.random()*2-1;
+                weightsB[i] = Math.random()*2-1;
+                biasA = Math.random()*2-1;
+                biasB = Math.random()*2-1;
+            }
+        }
+        else
         {
-            weightsA[i] = Math.random()*2-1;
-            weightsB[i] = Math.random()*2-1;
+            biasA = 0.0;
+            biasB = 0.0;
         }
         length = connectionCount;
     }
