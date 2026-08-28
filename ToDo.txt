@@ -1,8 +1,24 @@
+Learn how backpropagation works
+Learn how ML actually is calculated across network and neurons
+Make a neuron class
+Make a layer class
+Make a network class
+Make a simulation for the network to be tested
+Make a initial run case where the config and .dat are created
+Make the network launch/be created based on the config
+Make a neuron handler class for saving into the .dat
+Make a way for neurons to be created with the 2 initial weight lists
+Make a way to zip up the values in .dat so you can load old versions
+Test the network
+
+________________old________________
+___________________________________
+make layer class
+|_make neuron handler
+|_make neuron handler
 make network class
 make it learn
-tokening
-|_input text
-|_word tokenization
-|_subword tokenization
-|_encoding
-|
+make Neuron data save
+|_make a config file
+|_make a file on jar load
+|_make a way to track each neurons creation
