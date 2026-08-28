@@ -11,10 +11,35 @@ import java.io.FileOutputStream;
 
 public class fileHandler 
 {
+    public static String initLogs()
+    {
+        initFiles("./logs", "/pastLogs");
+        moveFiles("./logs", "/pastLogs/");
+        String name = "./logs/Log-" + generateFileName();
+        try
+        {
+            File newFile = new File(name);
+            newFile.createNewFile();
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+        return(name);
+    }
+    public static void printNLog(String str)
+    {
+        
+        System.out.println(str);
+    }
+    public static getMostRecentLog()
+    {
+        File[] filelist 
+    }
     public static String createSave()
     {
-        initFiles();
-        moveFiles();
+        initFiles("./Saves", "/pastSaves");
+        moveFiles("./Saves", "/pastSaves/");
         String name = "./Saves/" + generateFileName();
         try
         {
@@ -39,21 +64,21 @@ public class fileHandler
         }
         catch (IOException e) 
         {
-            System.out.println("Error writing file.");
+            System.out.println("Error writing to file.");
         }
 
         return("str");
     }
     
-    public static void initFiles()
+    public static void initFiles(String mainDir, String subDir)
     {
-        new File("./Saves").mkdirs();
-        File folder = new File("./Saves/oldFiles");
-        File zip = new File("./Saves/pastSaves.zip");
+        new File(mainDir).mkdirs();
+        File folder = new File(mainDir + subDir);
+        File zip = new File(mainDir + subDir + ".zip");
         
         if(!(zip.exists()))
         {
-            new File("./Saves/pastSaves").mkdirs();
+            folder.mkdirs();
         }
         else if(zip.exists())
         {
@@ -62,16 +87,16 @@ public class fileHandler
         System.out.println("Fixed folders and moved saves");
     }
     
-    private static void moveFiles()
+    private static void moveFiles(String mainDir, String subDir)
     {
-        File[] fileList = new File("./Saves").listFiles();
+        File[] fileList = new File(mainDir).listFiles();
         if(fileList!=null)
         {
             for(File FL : fileList)
             {
                 if(!FL.getName().contains(".zip") && !FL.isDirectory())
                 {
-                    File dest = new File("./Saves/pastSaves/" + FL.getName());
+                    File dest = new File(mainDir + subDir + FL.getName());
                     try
                     {
                         moveFileee(FL,dest);
