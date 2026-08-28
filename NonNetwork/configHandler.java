@@ -91,6 +91,16 @@ public class configHandler
                 return("");
             }
             
+            tempStr = prop.getProperty("makeLog");
+            if(tempStr!=null)
+            {
+                returnString+=tempStr+";";
+            }
+            else
+            {
+                return("");
+            }
+            
             tempStr = prop.getProperty("loadType");
             if(tempStr!=null)
             {
@@ -198,6 +208,8 @@ public class configHandler
             bw.write("regRate = 0.1");
             bw.newLine();
             bw.write("learnRate = 0.1");
+            bw.newLine();
+            bw.write("makeLog = true");
             bw.newLine();
             bw.newLine();
             bw.write("![load type]");
