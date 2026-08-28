@@ -1,0 +1,8 @@
+make network class
+make it learn
+tokening
+|_input text
+|_word tokenization
+|_subword tokenization
+|_encoding
+|
