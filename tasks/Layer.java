@@ -8,7 +8,7 @@ public class Layer
     private double learnRate;
     private double regRate;
     
-    public Layer(int neuronCount, int priorLayersNeurons, double learnRate, double regRate)
+    public Layer(int neuronCount, int priorLayersNeurons, double learnRate, double regRate, boolean notOldLoad)
     {
         learnRate = learnRate;
         regRate = regRate;
@@ -17,7 +17,7 @@ public class Layer
         neuronsIntoLayer = priorLayersNeurons;
         for(int i = 0; i<neuronCount; i++)
         {
-            Neurons[i] = new Neuron(neuronsIntoLayer, learnRate, regRate);
+            Neurons[i] = new Neuron(neuronsIntoLayer, learnRate, regRate, notOldLoad);
         }
     }
     
@@ -28,8 +28,6 @@ public class Layer
             System.out.println("Error, incorrect amount of values in, skipping layer");
             return(valuesIn);
         }
-        
-        
         
         double[] returnValues = new double[neuronsInCurrentLayer];
         
